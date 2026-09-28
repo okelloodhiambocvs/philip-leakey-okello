@@ -330,7 +330,7 @@ export const professionalGallery: GalleryItem[] = [
     event: "East Africa Security Congress",
     year: "2024",
     category: "Speaking",
-    imageUrl: "/src/assets/images/philip_podium_address_1790608633190.jpg"
+    imageUrl: "/images/philip_podium_address_1790608633190.jpg"
   },
   {
     id: "gal-2",
@@ -338,7 +338,7 @@ export const professionalGallery: GalleryItem[] = [
     event: "Annual Governance Symposium",
     year: "2023",
     category: "Boardroom",
-    imageUrl: "/src/assets/images/philip_board_speech_1790608644844.jpg"
+    imageUrl: "/images/philip_board_speech_1790608644844.jpg"
   },
   {
     id: "gal-3",
@@ -346,7 +346,7 @@ export const professionalGallery: GalleryItem[] = [
     event: "PSRA State Briefing",
     year: "2023",
     category: "Official",
-    imageUrl: "/src/assets/images/philip_state_blue_1790608619748.jpg"
+    imageUrl: "/images/philip_state_blue_1790608619748.jpg"
   },
   {
     id: "gal-4",
@@ -354,6 +354,6 @@ export const professionalGallery: GalleryItem[] = [
     event: "Office of the Chief Executive Officer",
     year: "2024",
     category: "Official",
-    imageUrl: "/src/assets/images/philip_executive_desk_1790608609248.jpg"
+    imageUrl: "/images/philip_executive_desk_1790608609248.jpg"
   }
 ];

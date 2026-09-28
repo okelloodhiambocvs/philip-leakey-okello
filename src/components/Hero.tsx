@@ -23,7 +23,7 @@ export default function Hero({ onOpenCv, onNavigate }: HeroProps) {
       {/* 50% Visible Executive Portrait Background - Sharp & Clear */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-        style={{ backgroundImage: `url('/src/assets/images/philip_executive_desk_1790608609248.jpg')` }}
+        style={{ backgroundImage: `url('/images/philip_executive_desk_1790608609248.jpg')` }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/70 to-white/40 dark:from-[#07121f]/90 dark:via-[#07121f]/70 dark:to-[#07121f]/40 pointer-events-none" />
 
@@ -178,7 +178,7 @@ export default function Hero({ onOpenCv, onNavigate }: HeroProps) {
               {/* Main Photo Card Container */}
               <div className="relative aspect-[3/4] bg-[#0c1a2c] overflow-hidden border border-navy-dark/20 dark:border-gold-exec/20 shadow-2xl">
                 <img
-                  src="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+                  src="/images/philip_executive_desk_1790608609248.jpg"
                   alt="Philip Leakey Okello, Chief Executive Officer"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"

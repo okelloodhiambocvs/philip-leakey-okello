@@ -433,7 +433,7 @@ export default function App() {
               label="EXECUTIVE BIOGRAPHY"
               title="Biography & Leadership Arc"
               subtitle="Tracing two decades of systemic reform, fiscal oversight under parliamentary audits, and parastatal regulatory transformation in East Africa."
-              bgImage="/src/assets/images/philip_biography_leadership_469138863.jpg"
+              bgImage="/images/philip_biography_leadership_469138863.jpg"
               photoCaption="Executive Chambers Desk • Nairobi, Kenya"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -467,7 +467,7 @@ export default function App() {
               label="CORPORATE GOVERNANCE & BOARD STEWARDSHIP"
               title="Governance & Boardroom Oversight"
               subtitle="Setting the gold standard for parastatal fiduciary responsibility, board self-evaluations, ICPAK compliance, and constitutional public resource stewardship."
-              bgImage="/src/assets/images/philip_board_deliberate_1790608656532.jpg"
+              bgImage="/images/philip_board_deliberate_1790608656532.jpg"
               photoCaption="Strategic Boardroom Deliberation & Governance Oversight"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -491,7 +491,7 @@ export default function App() {
               label="POLICY & REGULATORY TRANSFORMATION"
               title="Policy Impact & Legislative Directives"
               subtitle="Architecting national private security regulations, gazetted training curricula, biometric civil database integrations, and living wage frameworks."
-              bgImage="/src/assets/images/philip_state_blue_1790608619748.jpg"
+              bgImage="/images/philip_state_blue_1790608619748.jpg"
               photoCaption="National Regulatory Delegation & State Leadership"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -515,7 +515,7 @@ export default function App() {
               label="THOUGHT LEADERSHIP & PUBLICATIONS"
               title="Thought Leadership & Scholarly Works"
               subtitle="Published monographs on public administration, statutory manuals, keynote recordings, and verified diplomatic press archives."
-              bgImage="/src/assets/images/philip_podium_address_1790608633190.jpg"
+              bgImage="/images/philip_podium_address_1790608633190.jpg"
               photoCaption="Addressing Civic Assemblies & Leadership Forums"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -547,7 +547,7 @@ export default function App() {
               label="CREDENTIALS & AFFILIATIONS"
               title="Credentials, Education & Certifications"
               subtitle="Academic qualifications, Institute of Certified Public Accountants of Kenya (ICPAK) membership, and comprehensive executive dossier."
-              bgImage="/src/assets/images/philip_board_speech_1790608644844.jpg"
+              bgImage="/images/philip_board_speech_1790608644844.jpg"
               photoCaption="ICPAK Member Reg. 7183 • Fiduciary Excellence"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -612,7 +612,7 @@ export default function App() {
               label="OFFICIAL CONTACT & INQUIRIES"
               title="Official Communications & Chambers"
               subtitle="Direct connection with the Office of the Chief Executive Officer for board appointments, keynote speaking, and parastatal consulting."
-              bgImage="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+              bgImage="/images/philip_executive_desk_1790608609248.jpg"
               photoCaption="Office of the CEO • PSRA Executive Chambers"
               onNavigateHome={() => handleNavigate("home")}
             />
