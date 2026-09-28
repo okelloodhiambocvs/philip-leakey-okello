@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Globe, ArrowRight, Clipboard, Check, Sparkles, FileText, Languages, RotateCcw } from "lucide-react";
+import { Globe, ArrowRight, Clipboard, Check, Sparkles, FileText, Languages, RotateCcw, Shield } from "lucide-react";
 import { useLanguage, Language } from "../context/LanguageContext";
 
 export default function OutreachPortal() {
@@ -276,8 +276,9 @@ export default function OutreachPortal() {
               </div>
 
               {/* Fiduciary Stature Footer Note */}
-              <div className="mt-6 text-[10px] font-mono text-navy-dark/45 dark:text-white/35 uppercase tracking-widest text-center">
-                🛡️ Verified by National Security & Corporate Compliance Directives
+              <div className="mt-6 text-[10px] font-mono text-navy-dark/45 dark:text-white/35 uppercase tracking-widest text-center flex items-center justify-center gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-gold-exec inline-block shrink-0" />
+                <span>Verified by National Security & Corporate Compliance Directives</span>
               </div>
 
             </div>

@@ -326,34 +326,34 @@ export const mediaSpeakingEvents = [
 export const professionalGallery: GalleryItem[] = [
   {
     id: "gal-1",
-    title: "Addressing Delegates on Regulatory Harmonization",
-    event: "East Africa Security Leaders Council",
+    title: "Keynote Address to Civic Leaders & Regional Assemblies",
+    event: "East Africa Security Congress",
     year: "2024",
     category: "Speaking",
-    imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800"
+    imageUrl: "/src/assets/images/philip_podium_address_1790608633190.jpg"
   },
   {
     id: "gal-2",
-    title: "High-level Dialogue with Regional Oversight Commissions",
-    event: "International Regulatory Forums",
+    title: "Strategic Deliberations with Corporate & Parastatal Boards",
+    event: "Annual Governance Symposium",
     year: "2023",
     category: "Boardroom",
-    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800"
+    imageUrl: "/src/assets/images/philip_board_speech_1790608644844.jpg"
   },
   {
     id: "gal-3",
-    title: "Inaugural Ceremony of Certified Guards Training Curriculum",
-    event: "PSRA Curriculum Launch",
-    year: "2022",
+    title: "National Security Delegation & State Oversight Assembly",
+    event: "PSRA State Briefing",
+    year: "2023",
     category: "Official",
-    imageUrl: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800"
+    imageUrl: "/src/assets/images/philip_state_blue_1790608619748.jpg"
   },
   {
     id: "gal-4",
-    title: "National Security Sector Parliamentary Vetting Session",
-    event: "Committee on Security and National Administration",
-    year: "2023",
-    category: "Parliament",
-    imageUrl: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&q=80&w=800"
+    title: "Executive Office Governance & Statutory Policy Directives",
+    event: "Office of the Chief Executive Officer",
+    year: "2024",
+    category: "Official",
+    imageUrl: "/src/assets/images/philip_executive_desk_1790608609248.jpg"
   }
 ];

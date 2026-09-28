@@ -6,15 +6,23 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ArrowUpRight, Phone, Sun, Moon, Globe, ChevronDown } from "lucide-react";
-import { useLanguage, Language } from "../context/LanguageContext";
+import { useLanguage } from "../context/LanguageContext";
 
 interface NavigationProps {
   onNextJsDocOpen: () => void;
   isDarkMode?: boolean;
   onToggleDarkMode?: () => void;
+  activePage: string;
+  onNavigate: (page: string) => void;
 }
 
-export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onToggleDarkMode }: NavigationProps) {
+export default function Navigation({ 
+  onNextJsDocOpen, 
+  isDarkMode = false, 
+  onToggleDarkMode,
+  activePage,
+  onNavigate
+}: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -46,11 +54,12 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
   }, [isLangOpen]);
 
   const navLinks = [
-    { label: t("biography"), href: "#biography" },
-    { label: t("governance"), href: "#governance" },
-    { label: t("policy"), href: "#policy" },
-    { label: t("publications"), href: "#publications" },
-    { label: t("credentials"), href: "#credentials" },
+    { id: "home", label: language === "sw" ? "Mwanzo" : language === "fr" ? "Accueil" : "Home" },
+    { id: "biography", label: t("biography") },
+    { id: "governance", label: language === "sw" ? "Utawala & Bodi" : language === "fr" ? "Gouvernance & Conseil" : "Governance & Board" },
+    { id: "policy", label: t("policy") },
+    { id: "leadership", label: language === "sw" ? "Uongozi wa Kifikra" : language === "fr" ? "Leadership Pensé" : "Thought Leadership" },
+    { id: "credentials", label: t("credentials") },
   ];
 
   return (
@@ -58,41 +67,50 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
       <header
         id="main-nav-container"
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isScrolled
+          isScrolled || activePage !== "home"
             ? "bg-white/95 dark:bg-[#07121f]/95 backdrop-blur-md border-b border-navy-dark/10 dark:border-white/10 shadow-sm py-4"
             : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Executive Signature Logo */}
-          <a
-            href="#"
+          <button
+            onClick={() => onNavigate("home")}
             id="nav-logo-link"
-            className={`font-signature text-2xl md:text-3xl leading-none select-none pb-1 border-b border-gold-exec/20 active:scale-[0.98] transition-all duration-300 whitespace-nowrap ${
-              isScrolled 
+            className={`font-signature text-2xl md:text-3xl leading-none select-none pb-1 border-b border-gold-exec/20 active:scale-[0.98] transition-all duration-300 whitespace-nowrap cursor-pointer text-left ${
+              isScrolled || activePage !== "home"
                 ? "text-navy-dark dark:text-gold-exec hover:text-gold-exec" 
                 : "text-gold-exec hover:text-[#F3D778]"
             }`}
           >
             Philip L. Okello
-          </a>
+          </button>
 
           {/* Desktop Links */}
-          <nav id="desktop-navigation" className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`relative text-xs font-sans font-semibold tracking-widest uppercase transition-all duration-300 group py-1 ${
-                  isScrolled 
-                    ? "text-navy-dark/80 dark:text-white/80 hover:text-gold-exec dark:hover:text-gold-exec" 
-                    : "text-white/80 hover:text-white"
-                }`}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-exec transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+          <nav id="desktop-navigation" className="hidden lg:flex items-center gap-7">
+            {navLinks.map((link) => {
+              const isActive = activePage === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => onNavigate(link.id)}
+                  className={`relative text-xs font-sans font-semibold tracking-widest uppercase transition-all duration-300 group py-1 cursor-pointer ${
+                    isActive
+                      ? "text-gold-exec font-bold"
+                      : isScrolled || activePage !== "home"
+                      ? "text-navy-dark/80 dark:text-white/80 hover:text-gold-exec dark:hover:text-gold-exec" 
+                      : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  <span 
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-gold-exec transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`} 
+                  />
+                </button>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA / Tech Doc Badge Trigger */}
@@ -101,7 +119,7 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
             <button
               onClick={onToggleDarkMode}
               className={`p-2 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center ${
-                isScrolled
+                isScrolled || activePage !== "home"
                   ? "text-navy-dark dark:text-white hover:text-gold-exec"
                   : "text-white hover:text-gold-exec"
               }`}
@@ -116,7 +134,7 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`flex items-center gap-1.5 text-[11px] font-sans tracking-widest font-bold uppercase border px-2.5 py-1.5 transition-all duration-300 cursor-pointer ${
-                  isScrolled
+                  isScrolled || activePage !== "home"
                     ? "border-navy-dark/15 dark:border-white/20 text-navy-dark/80 dark:text-white hover:border-gold-exec hover:text-gold-exec"
                     : "border-white/20 text-white/90 hover:border-gold-exec hover:text-gold-exec"
                 }`}
@@ -164,17 +182,19 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
               </AnimatePresence>
             </div>
 
-            <a
-              href="#contact"
-              className={`group flex items-center gap-2 text-xs font-sans tracking-widest uppercase font-semibold px-5 py-2.5 transition-all duration-300 ${
-                isScrolled
+            <button
+              onClick={() => onNavigate("contact")}
+              className={`group flex items-center gap-2 text-xs font-sans tracking-widest uppercase font-semibold px-5 py-2.5 transition-all duration-300 cursor-pointer ${
+                activePage === "contact"
+                  ? "bg-gold-exec text-navy-dark"
+                  : isScrolled || activePage !== "home"
                   ? "bg-navy-dark dark:bg-gold-exec hover:bg-gold-exec dark:hover:bg-gold-exec/80 text-white dark:text-navy-dark"
                   : "bg-gold-exec hover:bg-white hover:text-navy-dark text-navy-dark"
               }`}
             >
               {t("contact")}
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Action */}
@@ -183,7 +203,7 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
             <button
               onClick={onToggleDarkMode}
               className={`p-1.5 transition-all duration-300 flex items-center justify-center ${
-                isScrolled ? "text-navy-dark dark:text-white" : "text-white"
+                isScrolled || activePage !== "home" ? "text-navy-dark dark:text-white" : "text-white"
               }`}
               aria-label="Toggle dark mode"
             >
@@ -193,8 +213,8 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
             <button
               id="mobile-nav-toggle"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 transition-colors focus:outline-none ${
-                isScrolled ? "text-navy-dark dark:text-white hover:text-gold-exec" : "text-white hover:text-gold-exec"
+              className={`p-2 transition-colors focus:outline-none cursor-pointer ${
+                isScrolled || activePage !== "home" ? "text-navy-dark dark:text-white hover:text-gold-exec" : "text-white hover:text-gold-exec"
               }`}
               aria-label="Toggle menu"
             >
@@ -215,19 +235,29 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
             className="fixed inset-0 z-40 bg-white dark:bg-[#07121f] pt-24 px-8 flex flex-col justify-between pb-12 lg:hidden overflow-y-auto"
           >
             <div className="flex flex-col gap-6">
-              {navLinks.map((link, idx) => (
-                <motion.a
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-serif text-2xl font-semibold text-navy-dark dark:text-white hover:text-gold-exec dark:hover:text-gold-exec transition-colors py-1"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, idx) => {
+                const isActive = activePage === link.id;
+                return (
+                  <motion.button
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    key={link.id}
+                    onClick={() => {
+                      onNavigate(link.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`font-serif text-2xl font-semibold text-left transition-colors py-1 cursor-pointer flex items-center justify-between ${
+                      isActive 
+                        ? "text-gold-exec font-bold"
+                        : "text-navy-dark dark:text-white hover:text-gold-exec dark:hover:text-gold-exec"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <span className="w-2 h-2 rounded-full bg-gold-exec" />}
+                  </motion.button>
+                );
+              })}
             </div>
 
             <div className="flex flex-col gap-5 border-t border-navy-dark/10 dark:border-white/10 pt-6 mt-8">
@@ -272,14 +302,16 @@ export default function Navigation({ onNextJsDocOpen, isDarkMode = false, onTogg
                 </a>
               </div>
 
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-navy-dark dark:bg-gold-exec dark:text-navy-dark hover:bg-gold-exec text-white text-xs font-sans tracking-widest uppercase font-medium py-3.5 transition-colors"
+              <button
+                onClick={() => {
+                  onNavigate("contact");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 bg-navy-dark dark:bg-gold-exec dark:text-navy-dark hover:bg-gold-exec text-white text-xs font-sans tracking-widest uppercase font-medium py-3.5 transition-colors cursor-pointer"
               >
                 {t("requestConsultation")}
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </button>
             </div>
           </motion.div>
         )}

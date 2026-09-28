@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   X, Calendar, BookOpen, Podcast, Newspaper, FileText, CheckSquare, 
-  HelpCircle, Shield, AlertTriangle, Video, Send, Check, Sparkles, Download, Play, MessageSquare, Clipboard, RotateCcw
+  HelpCircle, Shield, AlertTriangle, Video, Send, Check, Sparkles, Download, Play, MessageSquare, Clipboard, RotateCcw, Trophy
 } from "lucide-react";
 
 export type FooterModalType = 
@@ -20,6 +20,36 @@ interface FooterResourceModalProps {
   type: FooterModalType;
   onClose: () => void;
 }
+
+const ModalExecutivePhoto = ({
+  src,
+  alt,
+  caption,
+  aspect = "aspect-[16/6] md:aspect-[16/5]"
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  aspect?: string;
+}) => (
+  <div className="relative border border-navy-dark/15 dark:border-gold-exec/30 bg-[#0c1a2c] overflow-hidden shadow-sm my-4">
+    <div className={`w-full ${aspect} relative overflow-hidden`}>
+      <img
+        src={src}
+        alt={alt}
+        referrerPolicy="no-referrer"
+        className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/30 to-transparent pointer-events-none" />
+      {caption && (
+        <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-white/95">
+          <span className="truncate uppercase tracking-wider font-semibold">{caption}</span>
+          <span className="text-gold-exec uppercase font-bold text-[8px] tracking-widest shrink-0 ml-2">OFFICIAL DOSSIER</span>
+        </div>
+      )}
+    </div>
+  </div>
+);
 
 export default function FooterResourceModal({ type, onClose }: FooterResourceModalProps) {
   const [activeTab, setActiveTab] = useState(type);
@@ -286,6 +316,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Book Philip Leakey Okello</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_podium_address_1790608633190.jpg"
+                    alt="Philip Leakey Okello Keynote Address"
+                    caption="Philip Leakey Okello addressing civic delegates & public assembly"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     If you are organizing an international summit on regulatory harmonization, a parastatal board retreat, or a security modernization roundtable within sub-Saharan Africa, you can formally request a presentation, keynote address, or administrative consulting residency from Philip Leakey Okello.
                   </p>
@@ -423,6 +459,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Sovereign Literature & Monographs</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+                    alt="Philip Leakey Okello Author & Executive Desk"
+                    caption="Official executive treatises & legislative regulatory monographs"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     A collection of high-caliber published books and legislative analyses authored by Philip Leakey Okello, documenting the structural modernization of East African sovereign registries, regulatory mechanics, and public treasury oversight.
                   </p>
@@ -482,6 +524,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <span className="text-[10px] font-mono text-gold-exec uppercase tracking-widest block font-bold">DIPLOMATIC TALKS & BROADCASTS</span>
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">The Governance Broadcast Podcasts</h3>
                   </div>
+
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_board_speech_1790608644844.jpg"
+                    alt="Philip Leakey Okello Boardroom Briefing"
+                    caption="Executive boardroom dialogues & strategic policy commentary"
+                  />
 
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     Listen to recorded podcasts, cabinet advisory files, panel reviews, and academic discussions led by Chief Executive Officer Philip Leakey Okello.
@@ -549,6 +597,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Press Room & Gazettes</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_state_blue_1790608619748.jpg"
+                    alt="Philip Leakey Okello with State Delegation"
+                    caption="National regulatory delegation & state parastatal oversight"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     Official press statements and municipal releases clarifying cabinet directives, training policies, minimum wage guidelines, and biometric registry compliance.
                   </p>
@@ -603,6 +657,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Sovereign Governance Articles</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_board_deliberate_1790608656532.jpg"
+                    alt="Philip Leakey Okello Governance Deliberations"
+                    caption="Fiduciary governance and statutory policy publications"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     Extensive scholastic articles and political economy examinations authored by Philip Leakey Okello, published across regional public administration journals.
                   </p>
@@ -644,6 +704,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Executive Auditing Toolkits</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+                    alt="Philip Leakey Okello Compliance Desk"
+                    caption="Audit readiness frameworks, registry indexes & risk calculators"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     Evaluate your public corporation's audit readiness or test your safety firm's licensing risk profile using Philip's interactive calculation systems.
                   </p>
@@ -681,7 +747,15 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                       <div className="pt-2 border-t border-navy-dark/5 dark:border-white/5 flex justify-between items-center text-2xs font-mono text-gold-exec">
                         <span>Items Checked: {Object.values(auditChecklist).filter(Boolean).length} / 6</span>
                         <span>
-                          {Object.values(auditChecklist).filter(Boolean).length === 6 ? "🏆 READY FOR AUDIT" : "⚠️ UNPREPARED"}
+                          {Object.values(auditChecklist).filter(Boolean).length === 6 ? (
+                            <span className="flex items-center gap-1 text-gold-exec">
+                              <Trophy className="w-3.5 h-3.5 inline-block" /> READY FOR AUDIT
+                            </span>
+                          ) : (
+                            <span className="flex items-center gap-1 text-amber-500">
+                              <AlertTriangle className="w-3.5 h-3.5 inline-block" /> UNPREPARED
+                            </span>
+                          )}
                         </span>
                       </div>
                     </div>
@@ -773,6 +847,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Keynote Broadcast Videos</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_podium_address_1790608633190.jpg"
+                    alt="Philip Leakey Okello Speeches & Keynotes"
+                    caption="Official video archives, symposium addresses & broadcast keynotes"
+                  />
+
                   <p className="text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     Watch highlights of Philip Leakey Okello's state press conferences, television commentary, and governance panels.
                   </p>
@@ -825,6 +905,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Privacy Policy Directive</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_board_speech_1790608644844.jpg"
+                    alt="Philip Leakey Okello Statutory Oversight"
+                    caption="Constitutional data protections & sovereign registry security"
+                  />
+
                   <div className="space-y-4 text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     <p>
                       <strong>1. Operational Stewardship of Registry Databases:</strong> In strict alignment with the Data Protection Act of the Republic of Kenya, the Office of Philip Leakey Okello commits to safeguarding all private stakeholder databases, executive portfolios, and audit correspondence records. Any information entered into our registry or translated via server-side secure channels remains fully encrypted.
@@ -852,6 +938,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <span className="text-[10px] font-mono text-gold-exec uppercase tracking-widest block font-bold">STATE REVOLUTIONS REGISTRY</span>
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Cookie Policy & Consent Guide</h3>
                   </div>
+
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_board_deliberate_1790608656532.jpg"
+                    alt="Philip Leakey Okello Administrative Standards"
+                    caption="Institutional digital ethics and administrative cookie transparency"
+                  />
 
                   <div className="space-y-4 text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     <p>
@@ -881,6 +973,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Terms & Conditions of Service</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_board_deliberate_1790608656532.jpg"
+                    alt="Philip Leakey Okello Governance Mandates"
+                    caption="Public sector indemnification & state corporation charters"
+                  />
+
                   <div className="space-y-4 text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     <p>
                       <strong>1. Sovereign Indemnification Guidelines:</strong> By utilizing this resource portal, diagnostic calculators, or downloading scholastic briefs, you acknowledge that all materials represent the professional opinion of the Office of Philip Leakey Okello and do not constitute formal constitutional legal defense. Users must verify their municipal obligations before initiating state enterprise contracts.
@@ -909,6 +1007,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Return & Refund Policy</h3>
                   </div>
 
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+                    alt="Philip Leakey Okello PFM Fiduciary Standard"
+                    caption="National Treasury reconciliation & statutory revenue administration"
+                  />
+
                   <div className="space-y-4 text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     <p>
                       <strong>1. State Tariffs and Application Fees:</strong> All developmental registration fees structure, corporate compliance license tariffs, and municipal security vetting fees processed via this registry or parastatal portals are legally subject to the Public Finance Management (PFM) Act 2012 of the National Treasury. Once processed, all state collections are legally non-refundable.
@@ -936,6 +1040,12 @@ export default function FooterResourceModal({ type, onClose }: FooterResourceMod
                     <span className="text-[10px] font-mono text-gold-exec uppercase tracking-widest block font-bold">STATE RELATION AND COMMUNICATION ACCORDS</span>
                     <h3 className="font-serif text-2xl md:text-3xl font-bold dark:text-white mt-1">Media Release Policy</h3>
                   </div>
+
+                  <ModalExecutivePhoto
+                    src="/src/assets/images/philip_state_blue_1790608619748.jpg"
+                    alt="Philip Leakey Okello Media Relations Protocol"
+                    caption="Official state communiques, accreditation & broadcast guidelines"
+                  />
 
                   <div className="space-y-4 text-xs leading-relaxed text-charcoal-wood/80 dark:text-slate-300">
                     <p>

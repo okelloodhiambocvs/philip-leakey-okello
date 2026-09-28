@@ -3,26 +3,32 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ArrowDown, Mail, Phone, Award, Shield, FileText, CheckCircle2, Fingerprint, Target, Compass } from "lucide-react";
+import { motion } from "motion/react";
+import { ArrowDown, Award, Shield, FileText, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 interface HeroProps {
   onOpenCv: () => void;
+  onNavigate?: (page: string) => void;
 }
 
-export default function Hero({ onOpenCv }: HeroProps) {
-  const [activeTab, setActiveTab] = useState<'vision' | 'mission' | 'values'>('vision');
+export default function Hero({ onOpenCv, onNavigate }: HeroProps) {
   const { t, language } = useLanguage();
 
   return (
     <section
       id="hero-section"
-      className="relative min-h-screen bg-white dark:bg-navy-dark text-[#0F2744] dark:text-white pt-28 pb-16 flex items-center overflow-hidden transition-colors duration-300"
+      className="relative min-h-[92vh] bg-white dark:bg-[#07121f] text-[#0F2744] dark:text-white pt-28 pb-16 flex items-center overflow-hidden transition-colors duration-300"
     >
-      {/* Decorative Traditional Symmetrical Vector Grid Background (Executive feel, not futuristic neon) */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none">
+      {/* 50% Visible Executive Portrait Background - Sharp & Clear */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
+        style={{ backgroundImage: `url('/src/assets/images/philip_executive_desk_1790608609248.jpg')` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/70 to-white/40 dark:from-[#07121f]/90 dark:via-[#07121f]/70 dark:to-[#07121f]/40 pointer-events-none" />
+
+      {/* Decorative Traditional Symmetrical Vector Grid Background */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -101,12 +107,12 @@ export default function Hero({ onOpenCv }: HeroProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 md:gap-6 mb-12"
             >
-              <a
-                href="#biography"
-                className="bg-gold-exec hover:bg-[#B59120] hover:scale-[1.02] active:scale-[0.98] text-white dark:text-navy-dark text-xs font-sans tracking-widest font-semibold uppercase px-8 py-4 transition-all duration-300"
+              <button
+                onClick={() => onNavigate ? onNavigate("biography") : (window.location.hash = "biography")}
+                className="bg-gold-exec hover:bg-[#B59120] hover:scale-[1.02] active:scale-[0.98] text-white dark:text-navy-dark text-xs font-sans tracking-widest font-semibold uppercase px-8 py-4 transition-all duration-300 cursor-pointer shadow-md"
               >
                 {t("viewDossier")}
-              </a>
+              </button>
               
               <button
                 onClick={onOpenCv}
@@ -116,12 +122,12 @@ export default function Hero({ onOpenCv }: HeroProps) {
                 {t("viewCv")}
               </button>
 
-              <a
-                href="#contact"
-                className="text-xs font-sans text-[#2D3748]/60 dark:text-slate-gray/60 hover:text-navy-dark dark:hover:text-white uppercase tracking-widest underline decoration-gold-exec underline-offset-8 transition-colors py-2"
+              <button
+                onClick={() => onNavigate ? onNavigate("contact") : (window.location.hash = "contact")}
+                className="text-xs font-sans text-[#2D3748]/70 dark:text-slate-gray/70 hover:text-navy-dark dark:hover:text-white uppercase tracking-widest underline decoration-gold-exec underline-offset-8 transition-colors py-2 cursor-pointer"
               >
                 Connect Directly
-              </a>
+              </button>
             </motion.div>
 
             {/* Trust Badges - institutional parameters */}
@@ -156,218 +162,70 @@ export default function Hero({ onOpenCv }: HeroProps) {
 
           </div>
 
-          {/* Executive Crest, Vision, Mission, and Core Values Frame */}
+          {/* Replaced Mandate Table with Official Executive Portrait */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.98, x: 10 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.9, cubicBezier: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[420px] aspect-[4/5] bg-[#FAFBFD] dark:bg-[#0d1f33] border border-[#0F2744]/10 dark:border-gold-exec/25 p-5 md:p-6 flex flex-col justify-between overflow-hidden shadow-2xl transition-colors duration-300"
+              className="relative w-full max-w-[440px] group"
             >
-              {/* Outer decorative borders matching professional cert layout */}
-              <div className="absolute inset-3 border border-[#0F2744]/5 dark:border-gold-exec/15 pointer-events-none" />
-              <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-gold-exec pointer-events-none" />
-              <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-gold-exec pointer-events-none" />
-              
-              {/* Elegant Guilloche/Grid Vector Accents */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,162,39,0.06)_0%,transparent_75%)] pointer-events-none" />
+              {/* Outer decorative borders matching executive dossier frame */}
+              <div className="absolute -inset-2.5 border border-gold-exec/30 dark:border-gold-exec/40 pointer-events-none z-20" />
+              <div className="absolute -top-4 -left-4 w-6 h-6 border-t-2 border-l-2 border-gold-exec pointer-events-none z-20" />
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 border-b-2 border-r-2 border-gold-exec pointer-events-none z-20" />
 
-              {/* Top Compact Monogram and Section Title */}
-              <div className="relative flex items-center justify-between border-b border-[#0F2744]/10 dark:border-white/10 pb-4">
-                <div className="flex items-center gap-3">
-                  {/* Miniature Monogram Crest */}
-                  <div className="w-10 h-10 rounded-full bg-white dark:bg-[#12243a] border border-[#0F2744]/10 dark:border-gold-exec/40 flex items-center justify-center shadow-md select-none">
-                    <span className="font-signature text-[#0F2744] dark:text-gold-exec text-sm font-bold">PLO</span>
+              {/* Main Photo Card Container */}
+              <div className="relative aspect-[3/4] bg-[#0c1a2c] overflow-hidden border border-navy-dark/20 dark:border-gold-exec/20 shadow-2xl">
+                <img
+                  src="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+                  alt="Philip Leakey Okello, Chief Executive Officer"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+
+                {/* Subtle vignette gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/30 to-transparent" />
+
+                {/* Top Badge: Office of the CEO */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                  <div className="bg-navy-dark/90 dark:bg-[#07121f]/90 backdrop-blur-sm border border-gold-exec/30 px-3 py-1.5 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-gold-exec animate-pulse" />
+                    <span className="text-[9px] font-mono tracking-[0.2em] text-white uppercase font-bold">
+                      OFFICE OF THE CEO
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="text-[10px] font-sans tracking-[0.25em] font-bold text-navy-dark dark:text-white uppercase">EXECUTIVE DOCTRINE</h3>
-                    <p className="text-[8px] font-mono text-charcoal-wood/65 dark:text-slate-gray/50 uppercase tracking-widest">Office of the CEO</p>
+                  <div className="bg-navy-dark/90 dark:bg-[#07121f]/90 backdrop-blur-sm border border-white/10 px-2.5 py-1">
+                    <span className="text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-400" /> ACTIVE
+                    </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="px-2 py-0.5 text-[8px] font-mono bg-emerald-500/15 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 uppercase font-bold tracking-widest rounded-none">
-                    Verified
-                  </span>
-                </div>
-              </div>
 
-              {/* Dynamic Interactive Tabs */}
-              <div className="relative flex flex-col flex-1 pt-4 pb-2 z-10">
-                {/* Horizontal Tab Buttons */}
-                <div className="flex border-b border-[#0F2744]/5 dark:border-white/5 mb-4">
-                  <button
-                    onClick={() => setActiveTab('vision')}
-                    className={`flex-1 pb-2.5 text-[9px] md:text-[10px] font-mono tracking-widest uppercase transition-colors relative cursor-pointer ${
-                      activeTab === 'vision' ? 'text-gold-exec font-bold' : 'text-[#2D3748]/50 dark:text-slate-gray/50 hover:text-[#0F2744] dark:hover:text-white'
-                    }`}
-                  >
-                    Vision
-                    {activeTab === 'vision' && (
-                      <motion.div layoutId="heroActiveTab" className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold-exec" />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('mission')}
-                    className={`flex-1 pb-2.5 text-[9px] md:text-[10px] font-mono tracking-widest uppercase transition-colors relative cursor-pointer ${
-                      activeTab === 'mission' ? 'text-gold-exec font-bold' : 'text-[#2D3748]/50 dark:text-slate-gray/50 hover:text-[#0F2744] dark:hover:text-white'
-                    }`}
-                  >
-                    Mission
-                    {activeTab === 'mission' && (
-                      <motion.div layoutId="heroActiveTab" className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold-exec" />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('values')}
-                    className={`flex-1 pb-2.5 text-[9px] md:text-[10px] font-mono tracking-widest uppercase transition-colors relative cursor-pointer ${
-                      activeTab === 'values' ? 'text-gold-exec font-bold' : 'text-[#2D3748]/50 dark:text-slate-gray/50 hover:text-[#0F2744] dark:hover:text-white'
-                    }`}
-                  >
-                    Values
-                    {activeTab === 'values' && (
-                      <motion.div layoutId="heroActiveTab" className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold-exec" />
-                    )}
-                  </button>
-                </div>
-
-                {/* Tab Contents with smooth fade and slide transition */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <AnimatePresence mode="wait">
-                    {activeTab === 'vision' && (
-                      <motion.div
-                        key="vision"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25 }}
-                        className="flex flex-col flex-1 justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2 mb-3">
-                            <Target className="w-4 h-4 text-gold-exec shrink-0" />
-                            <span className="text-xs font-serif font-bold text-[#0F2744] dark:text-white uppercase tracking-wider">Mandate & Vision Focus</span>
-                          </div>
-                          <p className="text-[12px] font-sans font-light text-[#2D3748] dark:text-slate-gray/80 leading-relaxed text-justify mb-4 font-normal dark:font-light">
-                            To lead and sustain a world-class regulatory ecosystem in East Africa that integrates integrity, digital optimization, and absolute parastatal trust.
-                          </p>
-                          <div className="bg-white dark:bg-[#0b1b2b] border border-[#0F2744]/5 dark:border-white/5 p-3 rounded-none shadow-sm transition-colors duration-300">
-                            <span className="block text-[8px] font-mono text-gold-exec uppercase tracking-widest mb-1 font-bold">STRATEGIC GOAL 2030</span>
-                            <p className="text-[10px] font-sans text-charcoal-wood/70 dark:text-slate-gray/50 leading-normal">
-                              Establish an automated, paperless, and frictionless compliance registration pipeline for all private sector parastatal frameworks.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="bg-white dark:bg-[#0b1b2b]/90 border border-gold-exec/20 p-3 mt-4">
-                          <div className="flex justify-between items-center text-[10px]">
-                            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase animate-pulse">● STRATEGIC MATCH</span>
-                            <span className="font-sans text-charcoal-wood/65 dark:text-slate-gray/60 uppercase">Horizon 2030 Roadmap</span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {activeTab === 'mission' && (
-                      <motion.div
-                        key="mission"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25 }}
-                        className="flex flex-col flex-1 justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2 mb-3">
-                            <Compass className="w-4 h-4 text-gold-exec shrink-0" />
-                            <span className="text-xs font-serif font-bold text-[#0F2744] dark:text-white uppercase tracking-wider">Strategic Mission Statement</span>
-                          </div>
-                          <p className="text-[12px] font-sans font-light text-[#2D3748] dark:text-slate-gray/80 leading-relaxed text-justify mb-3 font-normal dark:font-light">
-                            To deliver premium public sector parastatal modernization, secure fiduciary structures under Treasury guidelines, and co-author progressive legislations supporting national stability.
-                          </p>
-                          <div className="space-y-2 mt-4">
-                            <div className="flex items-start gap-2 text-[10px] font-sans text-charcoal-wood/80 dark:text-slate-gray/70 leading-normal">
-                              <span className="text-gold-exec font-bold select-none mt-0.5">•</span>
-                              <span>Pioneering digital vetting systems and standardized operating curricula.</span>
-                            </div>
-                            <div className="flex items-start gap-2 text-[10px] font-sans text-charcoal-wood/80 dark:text-slate-gray/70 leading-normal">
-                              <span className="text-gold-exec font-bold select-none mt-0.5">•</span>
-                              <span>Modernizing tariff indices to elevate revenue parastatal margins to self-solvency.</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="bg-white dark:bg-[#0b1b2b]/90 border border-gold-exec/20 p-3 mt-4">
-                          <div className="flex justify-between items-center text-[10px]">
-                            <span className="font-mono text-gold-exec font-bold tracking-widest uppercase">REGULATORY COMPLIANCE</span>
-                            <span className="font-mono text-navy-dark dark:text-white tracking-widest font-bold">PLO-ACTIVE-2026</span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {activeTab === 'values' && (
-                      <motion.div
-                        key="values"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25 }}
-                        className="flex flex-col flex-1 justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2 mb-3">
-                            <Award className="w-4 h-4 text-gold-exec shrink-0" />
-                            <span className="text-xs font-serif font-bold text-[#0F2744] dark:text-white uppercase tracking-wider">Executive Core Pillars</span>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 gap-2">
-                            <div className="bg-white dark:bg-[#0b1b2b] border border-[#0F2744]/10 dark:border-white/5 p-2 flex items-start gap-2.5 shadow-sm">
-                              <Shield className="w-3.5 h-3.5 text-gold-exec shrink-0 mt-0.5" />
-                              <div>
-                                <h5 className="text-[10px] font-sans font-bold text-navy-dark dark:text-white uppercase tracking-wider">Fiduciary Integrity</h5>
-                                <p className="text-[9px] text-charcoal-wood/70 dark:text-slate-gray/50 leading-tight">Uncompromising budgetary discipline and peerless accountability under public law.</p>
-                              </div>
-                            </div>
-                            
-                            <div className="bg-white dark:bg-[#0b1b2b] border border-[#0F2744]/10 dark:border-white/5 p-2 flex items-start gap-2.5 shadow-sm">
-                              <div className="w-3.5 h-3.5 rounded-none border border-gold-exec/40 flex items-center justify-center font-mono text-[8px] text-gold-exec shrink-0 font-bold mt-0.5">RC</div>
-                              <div>
-                                <h5 className="text-[10px] font-sans font-bold text-navy-dark dark:text-white uppercase tracking-wider">Regulatory Constancy</h5>
-                                <p className="text-[9px] text-charcoal-wood/70 dark:text-slate-gray/50 leading-tight">Neutral parastatal administration independent of transitionary political dynamics.</p>
-                              </div>
-                            </div>
-
-                            <div className="bg-white dark:bg-[#0b1b2b] border border-[#0F2744]/10 dark:border-white/5 p-2 flex items-start gap-2.5 shadow-sm">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                              <div>
-                                <h5 className="text-[10px] font-sans font-bold text-navy-dark dark:text-white uppercase tracking-wider">Consensus Governance</h5>
-                                <p className="text-[9px] text-charcoal-wood/70 dark:text-slate-gray/50 leading-tight">Co-authoring minimum requirements with labor bureaus, state ministries, and partners.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="bg-white dark:bg-[#0b1b2b]/95 border border-gold-exec/20 p-3 mt-4">
-                          <div className="flex justify-between items-center text-[10px]">
-                            <span className="font-mono text-gold-exec font-bold tracking-widest uppercase">ICPAK MEMBERSHIP</span>
-                            <span className="font-mono text-navy-dark dark:text-white tracking-widest font-bold">Reg No. 7183</span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              {/* Bottom Current Vetting Status Badge */}
-              <div className="relative border-t border-[#0F2744]/10 dark:border-white/10 pt-4 mt-auto">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <span className="block text-[8px] font-mono text-gold-exec uppercase tracking-widest mb-0.5 font-bold">VETTING REGISTRY</span>
-                    <span className="block text-[10px] font-serif font-bold text-[#0F2744] dark:text-white uppercase tracking-wider">VERIFIED ACTIVE AUTHORITY</span>
+                {/* Brass Executive Nameplate Overlay at Bottom */}
+                <div className="absolute inset-x-0 bottom-0 p-6 z-10 bg-gradient-to-t from-[#091524] via-[#091524]/90 to-transparent">
+                  <div className="border-t border-gold-exec/40 pt-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-serif text-2xl font-bold text-white tracking-wide">
+                          Philip Leakey Okello
+                        </h3>
+                        <p className="text-[11px] font-mono text-gold-exec uppercase tracking-widest mt-0.5 font-semibold">
+                          Chief Executive Officer • Governance Expert
+                        </p>
+                      </div>
+                      <div className="w-9 h-9 rounded-full bg-gold-exec/10 border border-gold-exec/40 flex items-center justify-center shrink-0">
+                        <span className="font-signature text-gold-exec text-sm font-bold">PLO</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 mt-3 pt-2 border-t border-white/10 text-[9px] font-mono text-slate-300">
+                      <span>ICPAK Reg: 7183</span>
+                      <span>•</span>
+                      <span>State Parastatal Oversight</span>
+                    </div>
                   </div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse border border-emerald-950" title="Active Vetting Authority Status" />
                 </div>
+
               </div>
             </motion.div>
           </div>
@@ -376,14 +234,14 @@ export default function Hero({ onOpenCv }: HeroProps) {
       </div>
 
       {/* Inline Section Anchoring Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:block">
-        <a
-          href="#biography"
-          className="flex flex-col items-center gap-2 text-[10px] font-sans tracking-[0.25em] text-[#2D3748]/60 dark:text-slate-gray/40 hover:text-gold-exec transition-colors uppercase"
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:block">
+        <button
+          onClick={() => onNavigate ? onNavigate("biography") : (window.location.hash = "biography")}
+          className="flex flex-col items-center gap-1.5 text-[10px] font-sans tracking-[0.25em] text-[#2D3748]/60 dark:text-slate-gray/40 hover:text-gold-exec transition-colors uppercase cursor-pointer"
         >
-          Explore Dossier
+          <span>Explore Dossier</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce text-gold-exec" />
-        </a>
+        </button>
       </div>
     </section>
   );

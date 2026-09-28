@@ -5,7 +5,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Mail, ArrowRight, ShieldCheck, CornerDownRight } from "lucide-react";
+import { Mail, ArrowRight, ShieldCheck, CornerDownRight, Lock } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function NewsletterBrief() {
@@ -182,13 +182,16 @@ export default function NewsletterBrief() {
 
           {/* Privacy and Trust Oath Footnote */}
           <div className="mt-6 pt-4 border-t border-navy-dark/5 dark:border-white/5 flex items-center justify-between text-[10px] font-mono text-[#718096] dark:text-slate-gray/50">
-            <span className="uppercase tracking-wider">
-              {language === "sw"
-                ? "🔒 KIAPO CHA UTAMBULISHO NA MWANZO SALAMA"
-                : language === "fr"
-                ? "🔒 SERMENT DE CONFIDENTIALITÉ & INTÉGRITÉ"
-                : "🔒 CONFIDENTIALITY INTEGRITY OATH"
-              }
+            <span className="uppercase tracking-wider flex items-center gap-1.5">
+              <Lock className="w-3 h-3 text-gold-exec shrink-0 inline-block" />
+              <span>
+                {language === "sw"
+                  ? "KIAPO CHA UTAMBULISHO NA MWANZO SALAMA"
+                  : language === "fr"
+                  ? "SERMENT DE CONFIDENTIALITÉ & INTÉGRITÉ"
+                  : "CONFIDENTIALITY INTEGRITY OATH"
+                }
+              </span>
             </span>
             <span className="uppercase tracking-wider hidden sm:block">
               {language === "sw"
