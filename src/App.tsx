@@ -17,7 +17,6 @@ import Achievements from "./components/Achievements";
 import Philosophy from "./components/Philosophy";
 import Publications from "./components/Publications";
 import Education from "./components/Education";
-import MediaGallery from "./components/MediaGallery";
 import Contact from "./components/Contact";
 import OutreachPortal from "./components/OutreachPortal";
 import ExecutiveCv from "./components/ExecutiveCv";
@@ -123,7 +122,9 @@ const PageHeader = ({
                     OFFICIAL DOSSIER
                   </span>
                   <span className="block text-[11px] font-serif text-white font-semibold truncate">
-                    {photoCaption}
+                    {bgImage.includes("philip_biography_leadership_469138863.jpg")
+                      ? "Leadership & Security Sector Deliberation"
+                      : photoCaption}
                   </span>
                 </div>
               )}
@@ -428,17 +429,11 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_executive_desk_1790608609248.jpg')` }}
-            />
-
             <PageHeader
               label="EXECUTIVE BIOGRAPHY"
               title="Biography & Leadership Arc"
               subtitle="Tracing two decades of systemic reform, fiscal oversight under parliamentary audits, and parastatal regulatory transformation in East Africa."
-              bgImage="/src/assets/images/philip_executive_desk_1790608609248.jpg"
+              bgImage="/src/assets/images/philip_biography_leadership_469138863.jpg"
               photoCaption="Executive Chambers Desk • Nairobi, Kenya"
               onNavigateHome={() => handleNavigate("home")}
             />
@@ -468,12 +463,6 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_board_deliberate_1790608656532.jpg')` }}
-            />
-
             <PageHeader
               label="CORPORATE GOVERNANCE & BOARD STEWARDSHIP"
               title="Governance & Boardroom Oversight"
@@ -498,12 +487,6 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_state_blue_1790608619748.jpg')` }}
-            />
-
             <PageHeader
               label="POLICY & REGULATORY TRANSFORMATION"
               title="Policy Impact & Legislative Directives"
@@ -528,12 +511,6 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_podium_address_1790608633190.jpg')` }}
-            />
-
             <PageHeader
               label="THOUGHT LEADERSHIP & PUBLICATIONS"
               title="Thought Leadership & Scholarly Works"
@@ -553,8 +530,6 @@ export default function App() {
 
             <SectionSeparator />
 
-            {/* Speaking engagements & curated professional event moments */}
-            <MediaGallery />
           </motion.div>
         )}
 
@@ -568,12 +543,6 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_board_speech_1790608644844.jpg')` }}
-            />
-
             <PageHeader
               label="CREDENTIALS & AFFILIATIONS"
               title="Credentials, Education & Certifications"
@@ -639,12 +608,6 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* 50% Visible background photo - Sharp & Clear */}
-            <div 
-              className="absolute inset-0 bg-cover bg-top opacity-50 dark:opacity-50 pointer-events-none transition-all duration-700"
-              style={{ backgroundImage: `url('/src/assets/images/philip_executive_desk_1790608609248.jpg')` }}
-            />
-
             <PageHeader
               label="OFFICIAL CONTACT & INQUIRIES"
               title="Official Communications & Chambers"
